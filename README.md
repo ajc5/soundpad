@@ -2,4 +2,7 @@
 
 Generate the full range of sounds possible. Play sounds on the frequency, volume and time grid by dragging your fingers across the screen. Playback speech and instrument samples to  visually see music.
 
-Spectrogram (Chrome Music Lab) - https://musiclab.chromeexperiments.com/Spectrogram/
+Chrome Music Lab:
+Spectrogram - https://musiclab.chromeexperiments.com/Spectrogram/
+Sound Waves https://musiclab.chromeexperiments.com/Sound-Waves/
+Voice Spinner - https://musiclab.chromeexperiments.com/Voice-Spinner/
