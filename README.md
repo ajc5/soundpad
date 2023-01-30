@@ -1,5 +1,7 @@
 # soundpad
 
+[Try it!](http://ajc5.github.io/soundpad)
+
 Generate the full range of sounds possible. Play sounds on the frequency, volume and time grid by dragging your fingers across the screen. Play speech and instrument samples to  visually see music.
 
 Chrome Music Lab:
