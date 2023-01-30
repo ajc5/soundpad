@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sound Pad - spectrogram-based sound generator</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <canvas id="soundpad" style="background: lightgrey; width: 300px; height: 300px">
+    </canvas>
+Volume: v 0% &nbsp;&nbsp; ^ 100%<br>
+Frquency: < 20 MHz &nbsp;&nbsp; > 20K MHz<br><br>
+    <button onclick="play()">Play</button>
+    <button onclick="stop()">Stop</button>
+    <div id="current">
+    </div>
+    <script>
+	let currFreq = 5000;
+	let currVol = 1;
+        let curr = document.getElementById("current");
+	curr.innerHTML = "Freq: " + + Math.round(currFreq) + "MHz<br>Vol: " + Math.round(currVol * 100) + "%"
+        let canvas = document.getElementById("soundpad"), audioContext, gainNode, oscillator;
+        let ctx = canvas.getContext("2d");
+        ctx.font = "16px Arial";
+        let audio = document.createElement('audio');
+        
+
+    function play() {
+        audioContext = new AudioContext();
+        gainNode = audioContext.createGain();
+        oscillator = audioContext.createOscillator();
+        oscillator.frequency.value = currFreq;
+        gainNode.gain.value = currVol;
+        oscillator.connect(gainNode)
+                    .connect(audioContext.destination);
+        oscillator.start();
+	document.getElementById("soundpad").style.background = "pink"
+    }
+
+    function stop() {
+        oscillator.stop();
+	gainNode = null;
+	audioContext.close();
+	document.getElementById("soundpad").style.background = "lightgrey"
+    }
+    canvas.addEventListener("mousemove", function(e) { 
+        currFreq = e.offsetX/e.target.offsetWidth;
+	currFreq = 20 + 19980 * currFreq;
+        currVol = 1 - e.offsetY/e.target.offsetHeight;
+
+        curr.innerHTML = "Freq: " + Math.round(currFreq) + "MHz"
+		+ "<br>vol: " + Math.round(currVol * 100) + "%"
+		+ "<br> offsetX: " + e.offsetX
+		+ "<br> offsetwidth: " + e.target.offsetWidth
+		+ "<br> offsetY: " + e.offsetY
+		+ "<br> offsetheight: " + e.target.offsetHeight;
+        var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
+        var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
+        var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas
+        ctx.fillText("X: "+canvasX+", Y: "+canvasY, 10, 20);
+
+	if (oscillator) {
+          oscillator.frequency.value = currFreq;
+          gainNode.gain.value = currVol;
+	}
+        
+    })
+    </script>
+</body>
+</html>
