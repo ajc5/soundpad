@@ -7,27 +7,28 @@
 </head>
 <body>
     <button id="toggle" onclick="toggleSoundPad()" style="font-size: 20px;">Start</button><br><br>
-    <canvas id="soundpad" style="display: none; background: lightgrey; width: 300px; height: 300px"></canvas>
-Volume (vertical axis): 0-100%<br>
-Frequency (horizontal axis): 20-20K MHz<br><br>
-    <div id="current"></div>
-
+    <div id="soundpadBox">
+	<canvas id="soundpad" style="display: none; background: lightgrey; width: 300px; height: 300px"></canvas>
+	Volume (vertical axis): 0-100%<br>
+	Frequency (horizontal axis): 20-20K MHz<br><br>
+	<div id="current"></div>
+    </div>
     <script>
 	let currFreq = 5000;
 	let currVol = 1;
         let curr = document.getElementById("current");
 	let toggle = document.getElementById("toggle");
-	let soundpad = document.getElementById("soundpad");
+	let soundpadBox = document.getElementById("soundpadBox");
 	curr.innerHTML = "Freq: " + Math.round(currFreq) + " MHz<br>Vol: " + Math.round(currVol * 100) + "%"
-        let canvas = document.getElementById("soundpad"), audioContext, gainNode, oscillator;
-        let ctx = canvas.getContext("2d");
+        let soundpad = document.getElementById("soundpad"), audioContext, gainNode, oscillator;
+        let ctx = soundpad.getContext("2d");
         ctx.font = "16px Arial";
         let audio = document.createElement('audio');
 	let hasStarted = false;
 	
     function toggleSoundPad() {
-	if (soundpad.style.display === 'none') {
-		soundpad.style.display = 'block';	
+	if (soundpadBox.style.display === 'none') {
+		soundpadBox.style.display = 'block';	
 	}
 	if (hasStarted) {
 		stop();
@@ -58,7 +59,7 @@ Frequency (horizontal axis): 20-20K MHz<br><br>
 	audioContext.close();
 	document.getElementById("soundpad").style.background = "lightgrey"
     }
-    canvas.addEventListener("mousemove", function(e) { 
+    soundpad.addEventListener("mousemove", function(e) { 
 	if (hasStarted) {
 	        currFreq = e.offsetX/e.target.offsetWidth;
 		currFreq = 20 + 19980 * currFreq;
@@ -70,10 +71,10 @@ Frequency (horizontal axis): 20-20K MHz<br><br>
 			+ "<br> offsetwidth: " + e.target.offsetWidth
 			+ "<br> offsetY: " + e.offsetY
 			+ "<br> offsetheight: " + e.target.offsetHeight;
-	        var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
+	        var cRect = soundpad.getBoundingClientRect();        // Gets CSS pos, and width/height
 	        var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
 	        var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
-	        ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas
+	        ctx.clearRect(0, 0, soundpad.width, soundpad.height);  // (0,0) the top left of the canvas
 	        ctx.fillText("X: "+canvasX+", Y: "+canvasY, 10, 20);
 	
 		if (oscillator) {
