@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <button id="toggle" onclick="toggleSoundPad()" style="font-size: 20px;">Start</button><br><br>
+    <button id="toggle" onclick="toggleSoundPad()" style="font-size: 20px;">Start Sound Pad</button><br><br>
     <div id="soundpadBox" style="display: none;">
 	<canvas id="soundpad" style="background: lightgrey; width: 300px; height: 300px"></canvas>
 	Volume (vertical axis): 0-100%<br>
@@ -33,11 +33,11 @@
 	if (hasStarted) {
 		stop();
 		hasStarted = false;
-		toggle.innerHTML = 'Start';
+		toggle.innerHTML = 'Start Sound Pad';
 	} else {
 		start();
 		hasStarted = true;
-		toggle.innerHTML = 'Stop';
+		toggle.innerHTML = 'Stop Sound Pad';
 	}
     }
 
