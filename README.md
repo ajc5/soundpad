@@ -6,8 +6,8 @@ Generate the full range of sounds possible. Play sounds on the frequency, volume
 
 Chrome Music Lab:
 
-Spectrogram - https://musiclab.chromeexperiments.com/Spectrogram/
+[Spectrogram](https://musiclab.chromeexperiments.com/Spectrogram)
 
-Sound Waves - https://musiclab.chromeexperiments.com/Sound-Waves/
+[Sound Waves](https://musiclab.chromeexperiments.com/Sound-Waves)
 
-Voice Spinner - https://musiclab.chromeexperiments.com/Voice-Spinner/
+[Voice Spinner](https://musiclab.chromeexperiments.com/Voice-Spinner)
