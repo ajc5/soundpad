@@ -59,25 +59,27 @@ Frequency (horizontal axis): 20-20K MHz<br><br>
 	document.getElementById("soundpad").style.background = "lightgrey"
     }
     canvas.addEventListener("mousemove", function(e) { 
-        currFreq = e.offsetX/e.target.offsetWidth;
-	currFreq = 20 + 19980 * currFreq;
-        currVol = 1 - e.offsetY/e.target.offsetHeight;
-
-        curr.innerHTML = "Freq: " + Math.round(currFreq) + "MHz"
-		+ "<br>vol: " + Math.round(currVol * 100) + "%"
-		+ "<br><br> offsetX: " + e.offsetX
-		+ "<br> offsetwidth: " + e.target.offsetWidth
-		+ "<br> offsetY: " + e.offsetY
-		+ "<br> offsetheight: " + e.target.offsetHeight;
-        var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
-        var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
-        var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
-        ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas
-        ctx.fillText("X: "+canvasX+", Y: "+canvasY, 10, 20);
-
-	if (oscillator) {
-          oscillator.frequency.value = currFreq;
-          gainNode.gain.value = currVol;
+	if (hasStarted) {
+	        currFreq = e.offsetX/e.target.offsetWidth;
+		currFreq = 20 + 19980 * currFreq;
+	        currVol = 1 - e.offsetY/e.target.offsetHeight;
+	
+	        curr.innerHTML = "Freq: " + Math.round(currFreq) + "MHz"
+			+ "<br>vol: " + Math.round(currVol * 100) + "%"
+			+ "<br><br> offsetX: " + e.offsetX
+			+ "<br> offsetwidth: " + e.target.offsetWidth
+			+ "<br> offsetY: " + e.offsetY
+			+ "<br> offsetheight: " + e.target.offsetHeight;
+	        var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
+	        var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
+	        var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
+	        ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas
+	        ctx.fillText("X: "+canvasX+", Y: "+canvasY, 10, 20);
+	
+		if (oscillator) {
+	          oscillator.frequency.value = currFreq;
+	          gainNode.gain.value = currVol;
+		}   
 	}
         
     })
