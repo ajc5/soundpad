@@ -15,13 +15,13 @@
         let ctx = canvas.getContext("2d");
         ctx.font = "16px Arial";
         let audio = document.createElement('audio');
-	let start = false;
+	let hasStarted = false;
 	
     function toggleSoundPad() {
 	if (soundpad.style.display === 'none') {
 		soundpad.style.display = 'block';	
 	}
-	if (start) {
+	if (hasStarted) {
 		stop();
 		toggle.value = 'Start';
 	} else {
