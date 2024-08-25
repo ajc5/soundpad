@@ -4,15 +4,6 @@
     <meta charset="UTF-8">
     <title>Sound Pad - spectrogram-based sound generator</title>
     <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-    <button onclick="toggleSoundPad()" id="toggle">Start</button>
-    <canvas id="soundpad" style="display: none; background: lightgrey; width: 300px; height: 300px">
-    </canvas>
-Volume (vertical axi): 0-100%<br>
-Frequency (horizontal axis): 20-20K MHz<br><br>
-    <div id="current">
-    </div>
     <script>
 	let currFreq = 5000;
 	let currVol = 1;
@@ -26,7 +17,6 @@ Frequency (horizontal axis): 20-20K MHz<br><br>
         let audio = document.createElement('audio');
 	let start = false;
 	
-        
     function toggleSoundPad() {
 	if (soundpad.style.display === 'none') {
 		soundpad.style.display = 'block';	
@@ -82,5 +72,13 @@ Frequency (horizontal axis): 20-20K MHz<br><br>
         
     })
     </script>
-</body>
+</head>
+<body>
+    <button onclick="toggleSoundPad()" id="toggle">Start</button>
+    <canvas id="soundpad" style="display: none; background: lightgrey; width: 300px; height: 300px">
+    </canvas>
+Volume (vertical axi): 0-100%<br>
+Frequency (horizontal axis): 20-20K MHz<br><br>
+    <div id="current">
+    </div></body>
 </html>
