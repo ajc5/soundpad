@@ -10,7 +10,7 @@
         let curr = document.getElementById("current");
 	let toggle = document.getElementById("toggle");
 	let soundpad = document.getElementById("soundpad");
-	curr.innerHTML = "Freq: " + + Math.round(currFreq) + "MHz<br>Vol: " + Math.round(currVol * 100) + "%"
+	curr.innerHTML = "Freq: " + Math.round(currFreq) + " MHz<br>Vol: " + Math.round(currVol * 100) + "%"
         let canvas = document.getElementById("soundpad"), audioContext, gainNode, oscillator;
         let ctx = canvas.getContext("2d");
         ctx.font = "16px Arial";
@@ -77,7 +77,7 @@
     <button onclick="toggleSoundPad()" id="toggle">Start</button>
     <canvas id="soundpad" style="display: none; background: lightgrey; width: 300px; height: 300px">
     </canvas>
-Volume (vertical axi): 0-100%<br>
+Volume (vertical axis): 0-100%<br>
 Frequency (horizontal axis): 20-20K MHz<br><br>
     <div id="current">
     </div></body>
