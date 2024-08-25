@@ -6,26 +6,41 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <canvas id="soundpad" style="background: lightgrey; width: 300px; height: 300px">
+    <button onclick="toggleSoundPad()" id="toggle">Start</button>
+    <canvas id="soundpad" style="display: none; background: lightgrey; width: 300px; height: 300px">
     </canvas>
-Volume: v 0% &nbsp;&nbsp; ^ 100%<br>
-Frquency: < 20 MHz &nbsp;&nbsp; > 20K MHz<br><br>
-    <button onclick="play()">Play</button>
-    <button onclick="stop()">Stop</button>
+Volume (vertical axi): 0-100%<br>
+Frequency (horizontal axis): 20-20K MHz<br><br>
     <div id="current">
     </div>
     <script>
 	let currFreq = 5000;
 	let currVol = 1;
         let curr = document.getElementById("current");
+	let toggle = document.getElementById("toggle");
+	let soundpad = document.getElementById("soundpad");
 	curr.innerHTML = "Freq: " + + Math.round(currFreq) + "MHz<br>Vol: " + Math.round(currVol * 100) + "%"
         let canvas = document.getElementById("soundpad"), audioContext, gainNode, oscillator;
         let ctx = canvas.getContext("2d");
         ctx.font = "16px Arial";
         let audio = document.createElement('audio');
+	let start = false;
+	
         
+    function toggleSoundPad() {
+	if (soundpad.style.display === 'none') {
+		soundpad.style.display = 'block';	
+	}
+	if (start) {
+		stop();
+		toggle.value = 'Start';
+	} else {
+		start();
+		toggle.value = 'Stop';
+	}
+    }
 
-    function play() {
+    function start() {
         audioContext = new AudioContext();
         gainNode = audioContext.createGain();
         oscillator = audioContext.createOscillator();
@@ -34,7 +49,7 @@ Frquency: < 20 MHz &nbsp;&nbsp; > 20K MHz<br><br>
         oscillator.connect(gainNode)
                     .connect(audioContext.destination);
         oscillator.start();
-	document.getElementById("soundpad").style.background = "pink"
+	soundpad.style.background = "pink"
     }
 
     function stop() {
