@@ -32,11 +32,11 @@ Frequency (horizontal axis): 20-20K MHz<br><br>
 	if (hasStarted) {
 		stop();
 		hasStarted = false;
-		toggle.value = 'Start';
+		toggle.innerHTML = 'Start';
 	} else {
 		start();
 		hasStarted = true;
-		toggle.value = 'Stop';
+		toggle.innerHTML = 'Stop';
 	}
     }
 
